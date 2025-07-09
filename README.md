@@ -104,8 +104,7 @@ In future phases, we may explore ethical partnerships with other platforms for s
 Walmart Sparkathon 2025  
 Theme: *Reimagining Customer Experience with Emerging Technologies*
 
-By Team: [Your Team Name]  
-Members: [Your Names]
+
 
 ---
 
@@ -116,14 +115,6 @@ Members: [Your Names]
 - Community-based trust signals (“90% of users like you preferred this”)
 - Personalized price-drop alerts
 - FitCheck Chrome extension
-
----
-
-## 💬 Contact
-
-For feedback or collaboration:  
-📧 [your-email@example.com]  
-🔗 [LinkedIn or GitHub links]
 
 ---
 
