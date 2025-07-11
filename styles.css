@@ -131,14 +131,17 @@ body {
 }
 
 /* LEFT SIDE WELCOME TEXT */
+/* Sticky LEFT side */
 .welcome-text {
-  position: sticky;
-  top: 120px; /* stays below navbar */
-  align-self: flex-start;
-  max-width: 45%;
   color: #fff;
-  z-index: 3;
+  max-width: 50%;
+  margin: 0px;
+  padding-top: 30px;
+  position: sticky;
+  top: 200px; /* Adjust as needed */
+  align-self: flex-start;
 }
+
 
 .small-text {
   font-size: 1.5rem;
@@ -247,16 +250,6 @@ body {
   margin-bottom: 1px;
 }
 
-/* Sticky LEFT side */
-.welcome-text {
-  color: #fff;
-  max-width: 50%;
-  margin: 0px;
-  padding-top: 30px;
-  position: sticky;
-  top: 200px; /* Adjust as needed */
-  align-self: flex-start;
-}
 
 
 

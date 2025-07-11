@@ -42,7 +42,8 @@
                         <input 
                             type="text" 
                             placeholder="Paste, relax, get fit..." 
-                            class="input-box">
+                            class="input-box"
+                            id="product-input">
 
                         <div class="quiz-tease">
                             <p class="quiz-message"></p>Want better recommendations? Let’s personalize it.</p>
@@ -53,7 +54,7 @@
                             Check for personal fit
                         </label>
 
-                        <button class="check-button">Check Fit ➜</button>
+                        <button class="check-button"  onclick="goToProduct()">Check Fit ➜</button>
                     </div>
                         <!-- AFTER main-content -->
                         <section class="how-it-works" id="how-it-works">
@@ -105,7 +106,27 @@
         observer.observe(howSection);
     }
     </script>
+    <script>
+        function goToProduct() {
+            const product = document.getElementById("product-input").value.trim().toLowerCase();
 
+            // You can map more products like this
+            const productMap = {
+            "headphones": "headphones.html",
+            "p1": "result1.htm",
+            // add more like: "shoes": "shoes.html"
+            };
+
+            if (productMap[product]) {
+            // Optional: delay navigation to simulate "loading"
+            setTimeout(() => {
+                window.location.href = productMap[product];
+            }, 500); // 0.5s delay before redirecting
+            } else {
+            alert("Product not found. Try 'headphones' or 'p1'.");
+            }
+        }
+    </script>
 
     
 </body>
