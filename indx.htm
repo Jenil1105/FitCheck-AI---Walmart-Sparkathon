@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FitCheck AI</title>
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    
+</head>
+<body>
+
+    <div class="header-bar">
+        <div class="nav-container">
+            <div class="logo">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Walmart_logo.svg/200px-Walmart_logo.svg.png" alt="Walmart Logo" class="walmart-logo" />
+            </div>
+
+            <div class="nav-links">
+                <a href="#">Home</a>
+                <a href="#how-it-works">How It Works</a>
+                <a href="#">About Us</a>
+                <a href="#">FAQs</a>
+                <button class="nav-button secondary">Login</button>
+                <button class="nav-button primary">Sign Up</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="content-row">
+            <div class="welcome-text" data-aos="fade-left">
+                <span class="small-text">WELCOME TO,</span>
+                <h1 class="main-title">FitCheck AI</h1>
+            </div>
+
+            
+                <div class="fitcheck-intro" data-aos="fade-right">
+                    <h2 class="headline">🔍 Confused by Reviews? Get a Personalized Fit Score for Any Product!</h2>
+                    <p class="subtext">Paste a product link or type what you're looking for — we'll find out if it’s right for YOU.</p>
+
+                    <div class="fitcheck-input-vertical">
+                        <input 
+                            type="text" 
+                            placeholder="Paste, relax, get fit..." 
+                            class="input-box">
+
+                        <div class="quiz-tease">
+                            <p class="quiz-message"></p>Want better recommendations? Let’s personalize it.</p>
+                        </div>
+
+                        <label class="checkbox-label">
+                            <input type="checkbox" />
+                            Check for personal fit
+                        </label>
+
+                        <button class="check-button">Check Fit ➜</button>
+                    </div>
+                        <!-- AFTER main-content -->
+                        <section class="how-it-works" id="how-it-works">
+                            <h2 class="how-title">How FitCheck AI Works</h2>
+                            <ol class="how-steps">
+                                <li>
+                                <strong>Drop the Link or Describe the Product</strong><br>
+                                Paste a product link or describe what you want.
+                                </li>
+                                <li>
+                                <strong>Our AI Gets to Work</strong><br>
+                                We scan reviews, remove noise, and analyze seller reputation.
+                                </li>
+                                <li>
+                                <strong>Personalized FitScore, Just for You</strong><br>
+                                Based on your preferences and needs, we generate a smart FitScore with a pros-cons breakdown — so you know exactly how well the product fits you.
+                                </li>
+                                <li>
+                                <strong>Suggests Better or Local Alternatives</strong><br>
+                                Find smarter options at Walmart or nearby stores.
+                                </li>
+                                <li>
+                                <strong>Build Your Own Profile (Optional)</strong><br>
+                                Want to skip personalization each time? Create a simple FitProfile once and get smarter recommendations every time you use FitCheck AI.
+                                </li>
+                            </ol>
+                        </section>
+
+                </div>
+            
+        </div>
+    </div>
+    <script>
+    const howSection = document.querySelector('.how-it-works');
+
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+        } else {
+            entry.target.classList.remove('visible');
+        }
+        });
+    }, {
+        threshold: 0.4
+    });
+
+    if (howSection) {
+        observer.observe(howSection);
+    }
+    </script>
+
+
+    
+</body>
+</html>
