@@ -1,133 +1,205 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>FitCheck AI</title>
-    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-    
+  <meta charset="UTF-8" />
+  <title>FitCheck AI</title>
+  <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-
-    <div class="header-bar">
-        <div class="nav-container">
-            <div class="logo">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Walmart_logo.svg/200px-Walmart_logo.svg.png" alt="Walmart Logo" class="walmart-logo" />
-            </div>
-
-            <div class="nav-links">
-                <a href="#">Home</a>
-                <a href="#how-it-works">How It Works</a>
-                <a href="#">About Us</a>
-                <a href="#">FAQs</a>
-                <button class="nav-button secondary">Login</button>
-                <button class="nav-button primary">Sign Up</button>
-            </div>
-        </div>
+  <div class="header-bar">
+    <div class="nav-container">
+      <div class="logo">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Walmart_logo.svg/200px-Walmart_logo.svg.png" alt="Walmart Logo" class="walmart-logo" />
+      </div>
+      <div class="nav-links">
+        <a href="#">Home</a>
+        <a href="#how-it-works">How It Works</a>
+        <a href="#">About Us</a>
+        <a href="#">FAQs</a>
+        <button class="nav-button secondary">Login</button>
+        <button class="nav-button primary">Sign Up</button>
+      </div>
     </div>
+  </div>
 
-    <div class="main-content">
-        <div class="content-row">
-            <div class="welcome-text" data-aos="fade-left">
-                <span class="small-text">WELCOME TO,</span>
-                <h1 class="main-title">FitCheck AI</h1>
-            </div>
+  <div class="main-content">
+    <div class="content-row">
+      <div class="welcome-text" data-aos="fade-left">
+        <span class="small-text">WELCOME TO,</span>
+        <h1 class="main-title">FitCheck AI</h1>
+      </div>
 
-            
-                <div class="fitcheck-intro" data-aos="fade-right">
-                    <h2 class="headline">🔍 Confused by Reviews? Get a Personalized Fit Score for Any Product!</h2>
-                    <p class="subtext">Paste a product link or type what you're looking for — we'll find out if it’s right for YOU.</p>
+      <div class="fitcheck-intro" data-aos="fade-right">
+        <h2 class="headline">🔍 Confused by Reviews? Get a Personalized Fit Score for Any Product!</h2>
+        <p class="subtext">Paste a product link or type what you're looking for — we'll find out if it’s right for YOU.</p>
 
-                    <div class="fitcheck-input-vertical">
-                        <input 
-                            type="text" 
-                            placeholder="Paste, relax, get fit..." 
-                            class="input-box"
-                            id="product-input">
+        <div class="fitcheck-input-vertical">
+          <input type="text" placeholder="Paste, relax, get fit..." class="input-box" id="product-input" />
 
-                        <div class="quiz-tease">
-                            <p class="quiz-message"></p>Want better recommendations? Let’s personalize it.</p>
-                        </div>
+          <div class="quiz-tease">
+            <p class="quiz-message">Want better recommendations? Let’s personalize it.</p>
+          </div>
 
-                        <label class="checkbox-label">
-                            <input type="checkbox" />
-                            Check for personal fit
-                        </label>
+          <label class="checkbox-label">
+            <input type="checkbox" id="personalize-checkbox" />
+            Check for personal fit
+          </label>
 
-                        <button class="check-button"  onclick="goToProduct()">Check Fit ➜</button>
-                    </div>
-                        <!-- AFTER main-content -->
-                        <section class="how-it-works" id="how-it-works">
-                            <h2 class="how-title">How FitCheck AI Works</h2>
-                            <ol class="how-steps">
-                                <li>
-                                <strong>Drop the Link or Describe the Product</strong><br>
-                                Paste a product link or describe what you want.
-                                </li>
-                                <li>
-                                <strong>Our AI Gets to Work</strong><br>
-                                We scan reviews, remove noise, and analyze seller reputation.
-                                </li>
-                                <li>
-                                <strong>Personalized FitScore, Just for You</strong><br>
-                                Based on your preferences and needs, we generate a smart FitScore with a pros-cons breakdown — so you know exactly how well the product fits you.
-                                </li>
-                                <li>
-                                <strong>Suggests Better or Local Alternatives</strong><br>
-                                Find smarter options at Walmart or nearby stores.
-                                </li>
-                                <li>
-                                <strong>Build Your Own Profile (Optional)</strong><br>
-                                Want to skip personalization each time? Create a simple FitProfile once and get smarter recommendations every time you use FitCheck AI.
-                                </li>
-                            </ol>
-                        </section>
-
-                </div>
-            
+          <button class="check-button" id="check-button">Check Fit ➜</button>
         </div>
+
+        <section class="how-it-works" id="how-it-works">
+          <h2 class="how-title">How FitCheck AI Works</h2>
+          <ol class="how-steps">
+            <li><strong>Drop the Link or Describe the Product</strong><br>Paste a product link or describe what you want.</li>
+            <li><strong>Our AI Gets to Work</strong><br>We scan reviews, remove noise, and analyze seller reputation.</li>
+            <li><strong>Personalized FitScore, Just for You</strong><br>Based on your preferences and needs, we generate a smart FitScore with a pros-cons breakdown — so you know exactly how well the product fits you.</li>
+            <li><strong>Suggests Better or Local Alternatives</strong><br>Find smarter options at Walmart or nearby stores.</li>
+            <li><strong>Build Your Own Profile (Optional)</strong><br>Create a FitProfile once and get smarter recommendations every time.</li>
+          </ol>
+        </section>
+      </div>
     </div>
-    <script>
+  </div>
+
+  <div id="product-modal" class="modal-overlay" style="display: none;">
+  <div class="modal-content">
+    <h3>Select your product</h3>
+    <div id="modal-product-options" class="modal-grid"></div>
+    <button onclick="closeModal()" class="modal-close">Cancel</button>
+  </div>
+</div>
+
+  <script>
+    // Scroll observer
     const howSection = document.querySelector('.how-it-works');
-
     const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-        } else {
-            entry.target.classList.remove('visible');
-        }
-        });
-    }, {
-        threshold: 0.4
+      entries.forEach(entry => {
+        entry.target.classList.toggle('visible', entry.isIntersecting);
+      });
+    }, { threshold: 0.4 });
+
+    if (howSection) observer.observe(howSection);
+
+    // Button logic
+    document.getElementById("check-button").addEventListener("click", function () {
+      const input = document.getElementById("product-input").value.toLowerCase();
+      const isChecked = document.getElementById("personalize-checkbox").checked;
+
+      if (isChecked && input.includes("pigeon") && input.includes("pressure cooker")) {
+        showProductMatches(input);
+      } else {
+        goToProduct(input);
+      }
     });
 
-    if (howSection) {
-        observer.observe(howSection);
+    function goToProduct(product) {
+      const productMap = {
+        "headphones": "headphones.html"
+        // Add more if needed
+      };
+
+      if (productMap[product]) {
+        setTimeout(() => {
+          window.location.href = productMap[product];
+        }, 500);
+      } else {
+        alert("Please enter a recognizable product or check 'personalize'.");
+      }
     }
-    </script>
-    <script>
-        function goToProduct() {
-            const product = document.getElementById("product-input").value.trim().toLowerCase();
 
-            // You can map more products like this
-            const productMap = {
-            "headphones": "headphones.html",
-            "p1": "result1.htm",
-            // add more like: "shoes": "shoes.html"
-            };
+    function showProductMatches(query) {
+  const modal = document.getElementById("product-modal");
+  const optionsContainer = document.getElementById("modal-product-options");
+  optionsContainer.innerHTML = "";
 
-            if (productMap[product]) {
-            // Optional: delay navigation to simulate "loading"
-            setTimeout(() => {
-                window.location.href = productMap[product];
-            }, 500); // 0.5s delay before redirecting
-            } else {
-            alert("Product not found. Try 'headphones' or 'p1'.");
-            }
-        }
-    </script>
+  const options = [
+    {
+      id: "pigeon-deluxe",
+      name: "Pigeon Deluxe Pressure Cooker 5L",
+      img: "https://m.media-amazon.com/images/I/51+OTdIZSdL._AC_SX679_.jpg"
+    },
+    {
+      id: "pigeon-regular",
+      name: "Pigeon Regular Cooker 5L",
+      img: "https://m.media-amazon.com/images/I/61UUxycGsjL._AC_SX679_.jpg"
+    },
+    {
+      id: "Pigeon Black Series Cooker 5L",
+      name: "Pigeon Hard Anodized Cooker 5L",
+      img: "https://m.media-amazon.com/images/I/61IHXmF1-7L._AC_SX679_.jpg"
+    },
+    {
+      id: "Pigeon  Series Cooker 5L",
+      name: "Pigeon Tri-Ply Cooker 5L",
+      img: "https://m.media-amazon.com/images/I/618EyGYIY8L._AC_SX679_.jpg"
+    }
+  ];
 
-    
+  options.forEach(item => {
+    const card = document.createElement("div");
+    card.className = "match-card";
+    card.innerHTML = `
+      <img src="${item.img}" alt="${item.name}">
+      <h4>${item.name}</h4>
+      <button onclick="goToQuiz('${item.id}')">This one</button>
+    `;
+    optionsContainer.appendChild(card);
+  });
+
+  modal.style.display = "flex";
+  document.body.style.overflow = "hidden"; // Prevent scroll
+}
+function closeModal() {
+  document.getElementById("product-modal").style.display = "none";
+  document.body.style.overflow = "auto";
+}
+
+
+    function goToQuiz(productId) {
+      window.location.href = `quiz.html?product=${productId}`;
+    }
+  </script>
+
+  <style>
+    .match-results {
+      margin: 2rem auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      justify-content: center;
+    }
+
+    .match-card {
+      background: #fff;
+      border-radius: 1rem;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      padding: 1rem;
+      width: 240px;
+      text-align: center;
+      transition: transform 0.2s ease;
+    }
+
+    .match-card:hover {
+      transform: scale(1.03);
+    }
+
+    .match-card img {
+      width: 100%;
+      border-radius: 0.5rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .match-card button {
+      background-color: #0f62fe;
+      color: white;
+      padding: 6px 12px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 0.5rem;
+    }
+  </style>
 </body>
 </html>

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FitCheck Quiz</title>
+  <link rel="stylesheet" href="quiz.css">
+</head>
+<body>
+  <div id="intro-screen" class="intro-screen">
+    <h2>🔍 Personalizing Your Fit...</h2>
+    <p>Hang tight! We're loading questions just for you.</p>
+  </div>
+
+  <div class="chat-container" id="chat-container">
+    <!-- Chat messages will be injected here -->
+  </div>
+
+  <script>
+    const questions = [
+      {
+        q: "What type of stove do you use?",
+        options: ["Gas", "Induction", "Both"]
+      },
+      {
+        q: "How many people do you usually cook for?",
+        options: ["1–2", "3–4", "5 or more"]
+      },
+      {
+        q: "What kind of meals do you cook most often?",
+        options: ["Rice, dals, and curries", "Meat and stews", "One-pot meals or biryanis", "A mix of everything"]
+      },
+      {
+        q: "How important is easy cleaning and maintenance to you?",
+        options: ["Very important", "Somewhat important", "Not a big concern"]
+      },
+      {
+        q: "Do you prefer lightweight cookware or sturdier, long-lasting ones?",
+        options: ["Lightweight", "Durable & heavy-duty", "No preference"]
+      },
+      {
+        q: "Do you often cook on high heat or need quick cooking?",
+        options: ["Yes", "Sometimes", "Rarely"]
+      },
+      {
+        q: "Do you care more about aesthetics or performance?",
+        options: ["Looks matter", "Just performance", "A bit of both"]
+      }
+    ];
+
+    let current = 0;
+    const answers = [];
+
+    const container = document.getElementById("chat-container");
+
+    function addBotMessage(text) {
+      const msg = document.createElement("div");
+      msg.className = "chat-bubble bot";
+      msg.innerText = text;
+      container.appendChild(msg);
+      container.scrollTop = container.scrollHeight;
+    }
+
+    function addUserMessage(text) {
+      const msg = document.createElement("div");
+      msg.className = "chat-bubble user";
+      msg.innerText = text;
+      container.appendChild(msg);
+      container.scrollTop = container.scrollHeight;
+    }
+
+    function askQuestion(index) {
+      const q = questions[index];
+      addBotMessage(q.q);
+
+      const optionBox = document.createElement("div");
+      optionBox.className = "option-box";
+
+      q.options.forEach(opt => {
+        const btn = document.createElement("button");
+        btn.innerText = opt;
+        btn.onclick = () => {
+          addUserMessage(opt);
+          answers.push({ question: q.q, answer: opt });
+          optionBox.remove();
+          if (index + 1 < questions.length) {
+            setTimeout(() => askQuestion(index + 1), 500);
+          } else {
+            setTimeout(showResult, 500);
+          }
+        };
+        optionBox.appendChild(btn);
+      });
+
+      container.appendChild(optionBox);
+      container.scrollTop = container.scrollHeight;
+    }
+
+    function showResult() {
+      addBotMessage("✅ That's it! Would you like to add any extra details (like cooking habits, location, etc.)?");
+
+      setTimeout(() => {
+        const optionBox = document.createElement("div");
+        optionBox.className = "option-box optional-text";
+
+        const textarea = document.createElement("textarea");
+        textarea.placeholder = "Type anything you'd like us to know...";
+        textarea.rows = 4;
+        textarea.style.width = "100%";
+        textarea.style.padding = "10px";
+        textarea.style.borderRadius = "12px";
+        textarea.style.border = "1px solid #ccc";
+        textarea.style.resize = "none";
+        textarea.style.fontFamily = "inherit";
+        textarea.style.fontSize = "14px";
+
+        const btnContainer = document.createElement("div");
+        btnContainer.style.display = "flex";
+        btnContainer.style.gap = "10px";
+        btnContainer.style.marginTop = "10px";
+
+        const submitBtn = document.createElement("button");
+        submitBtn.innerText = "Submit";
+        submitBtn.onclick = () => {
+          const val = textarea.value.trim();
+          if (val) {
+            addUserMessage(val);
+            answers.push({ question: "Additional Info", answer: val });
+          } else {
+            addUserMessage("Skipped extra input.");
+          }
+          optionBox.remove();
+          setTimeout(showFinalButtons, 800);
+        };
+
+        const skipBtn = document.createElement("button");
+        skipBtn.innerText = "Skip";
+        skipBtn.onclick = () => {
+          addUserMessage("Skipped extra input.");
+          optionBox.remove();
+          setTimeout(showFinalButtons, 800);
+        };
+
+        btnContainer.appendChild(submitBtn);
+        btnContainer.appendChild(skipBtn);
+        optionBox.appendChild(textarea);
+        optionBox.appendChild(btnContainer);
+
+        container.appendChild(optionBox);
+        container.scrollTop = container.scrollHeight;
+      }, 1000);
+    }
+
+    function showFinalButtons() {
+      const optionBox = document.createElement("div");
+      optionBox.className = "option-box final-actions";
+
+      // Requiz Button
+      const reQuizBtn = document.createElement("button");
+      reQuizBtn.innerText = "🔁 Requiz";
+      reQuizBtn.className = "requiz-btn";
+      reQuizBtn.style.backgroundColor = "white";
+      reQuizBtn.style.color = "black";
+      reQuizBtn.onclick = () => {
+        container.innerHTML = "";
+        current = 0;
+        answers.length = 0;
+        startQuiz();
+      };
+      optionBox.appendChild(reQuizBtn);
+
+      // Check FitScore Button
+      const checkBtn = document.createElement("button");
+      checkBtn.innerText = "✅ Check My FitScore";
+      checkBtn.onclick = () => {
+        window.location.href = "cooker.html";
+      };
+      optionBox.appendChild(checkBtn);
+
+      container.appendChild(optionBox);
+      container.scrollTop = container.scrollHeight;
+    }
+
+    function startQuiz() {
+      addBotMessage("👋 Hey! Let's personalize your FitScore.");
+      setTimeout(() => {
+        askQuestion(current);
+      }, 1200);
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      setTimeout(() => {
+        // Hide intro
+        document.getElementById("intro-screen").style.display = "none";
+        // Show chat container
+        document.querySelector(".chat-container").style.display = "flex";
+        // Start quiz
+        startQuiz();
+      }, 3000); // Delay for intro screen
+    });
+  </script>
+</body>
+</html>
