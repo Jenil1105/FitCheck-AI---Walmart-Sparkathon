@@ -2,15 +2,15 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>FitCheck AI</title>
-  <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:700&display=swap" rel="stylesheet" />
+  <title>Youra</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <div class="header-bar">
     <div class="nav-container">
       <div class="logo">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Walmart_logo.svg/200px-Walmart_logo.svg.png" alt="Walmart Logo" class="walmart-logo" />
       </div>
       <div class="nav-links">
         <a href="#">Home</a>
@@ -27,7 +27,9 @@
     <div class="content-row">
       <div class="welcome-text" data-aos="fade-left">
         <span class="small-text">WELCOME TO,</span>
-        <h1 class="main-title">FitCheck AI</h1>
+        <h1 class="main-title">Youra</h1>
+        <p class="slogan">Where your view meets smart reviews.</p>
+
       </div>
 
       <div class="fitcheck-intro" data-aos="fade-right">
@@ -50,7 +52,7 @@
         </div>
 
         <section class="how-it-works" id="how-it-works">
-          <h2 class="how-title">How FitCheck AI Works</h2>
+          <h2 class="how-title">How Youra Works</h2>
           <ol class="how-steps">
             <li><strong>Drop the Link or Describe the Product</strong><br>Paste a product link or describe what you want.</li>
             <li><strong>Our AI Gets to Work</strong><br>We scan reviews, remove noise, and analyze seller reputation.</li>
@@ -87,16 +89,16 @@
       const input = document.getElementById("product-input").value.toLowerCase();
       const isChecked = document.getElementById("personalize-checkbox").checked;
 
-      if (isChecked && input.includes("pigeon") && input.includes("pressure cooker")) {
+      if (isChecked && input.includes("pigeon") ) {
         showProductMatches(input);
       } else {
-        goToProduct(input);
+        window.location.href = "headphones.html";
       }
     });
 
     function goToProduct(product) {
       const productMap = {
-        "headphones": "headphones.html"
+        "https://a.co/d/ciSvs72": "headphones.html"
         // Add more if needed
       };
 

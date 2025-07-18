@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Pigeon Hard Anodized Cooker – FitCheck</title>
-  <link rel="stylesheet" href="headphones.css" />
+  <link rel="stylesheet" href="result.css" />
 </head>
 <body>
   <div id="loading-screen" class="loading-screen">Analyzing product reviews...</div>
@@ -13,7 +13,6 @@
     <div class="header-bar">
       <div class="nav-container">
         <div class="logo">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Walmart_logo.svg/200px-Walmart_logo.svg.png" alt="Walmart Logo" class="walmart-logo" />
         </div>
 
         <div class="nav-links">
@@ -101,7 +100,7 @@
       </div>
 
       <div class="verdict">
-        <h2>⚡ FitCheck AI Quick Verdict</h2>
+        <h2>⚡ Youra Quick Verdict</h2>
         <p>
           The Pigeon Hard Anodized 5L Cooker is a solid performer if you need durability, aesthetic appeal, and capacity for large meals. However, for users cooking small portions on a daily basis, it’s unnecessarily bulky and less efficient. If your priority is lightweight, easy-to-clean, and quick-use cookware, a 2–3L cooker would fit far better. Consider sizing down for a better cooking experience.
         </p>
@@ -146,7 +145,31 @@
 
   </div>
 </section>
+<div id="chatbot-button" class="chatbot-button" style="display:none;">
+  <span class="chatbot-tooltip">Have any questions?</span>
+  <span class="chatbot-icon">?</span>
+</div>
 
+
+<div id="chatbot-button" class="chatbot-button" style="display:none;">
+    <span class="chatbot-tooltip">Have any questions?</span>
+    <span class="chatbot-icon">?</span>
+  </div>
+
+  <!-- Chatbot box -->
+  <div id="chatbox" class="chatbox hidden">
+    <div class="chatbox-header">
+      <span>How may I help you?</span>
+      <button id="chatbox-close">&times;</button>
+    </div>
+    <div class="chatbox-body" id="chatbox-body">
+      <p class="bot-message">Hi! Ask me anything about the product.</p>
+    </div>
+    <div class="chatbox-input-area">
+      <input type="text" id="chat-input" placeholder="Type your question..." />
+      <button id="send-btn">Send</button>
+    </div>
+  </div>
 
   <script>
     window.addEventListener("load", () => {
@@ -154,7 +177,85 @@
         document.getElementById("loading-screen").style.display = "none";
         document.getElementById("main-content").style.display = "block";
         document.getElementById("product-content").classList.remove("hidden");
-      }, 2000); // 2 seconds delay
+      }, 2000);
+    });
+
+    function waitForLoadingScreenToHide(callback) {
+      const loadingScreen = document.getElementById("loading-screen");
+      const interval = setInterval(() => {
+        if (!loadingScreen || getComputedStyle(loadingScreen).display === "none") {
+          clearInterval(interval);
+          callback();
+        }
+      }, 100);
+    }
+
+    waitForLoadingScreenToHide(() => {
+      const chatbotButton = document.getElementById("chatbot-button");
+      const chatbox = document.getElementById("chatbox");
+      const chatboxClose = document.getElementById("chatbox-close");
+
+      chatbotButton.style.display = "flex";
+      chatbotButton.classList.remove("shrunk");
+
+      setTimeout(() => {
+        chatbotButton.classList.add("shrunk");
+      }, 1000);
+
+      chatbotButton.addEventListener("click", () => {
+        chatbox.classList.toggle("hidden");
+      });
+
+      chatboxClose.addEventListener("click", () => {
+        chatbox.classList.add("hidden");
+      });
+    });
+
+    const sendBtn = document.getElementById("send-btn");
+    const chatInput = document.getElementById("chat-input");
+    const chatBody = document.getElementById("chatbox-body");
+
+    sendBtn.addEventListener("click", () => {
+      const message = chatInput.value.trim();
+      if (!message) return;
+
+      // User message
+      const userMsg = document.createElement("p");
+      userMsg.classList.add("user-message");
+      userMsg.textContent = message;
+      chatBody.appendChild(userMsg);
+      chatInput.value = "";
+      chatBody.scrollTop = chatBody.scrollHeight;
+
+      // Bot response
+      setTimeout(() => {
+        const botMsg = document.createElement("p");
+        botMsg.classList.add("bot-message");
+
+        const question = message.toLowerCase();
+        if (question.includes("how")) {
+            botMsg.innerHTML = `
+                <strong>Available in two timeless colors:</strong><br />
+                <ul style="padding-left: 20px; margin-top: 4px; margin-bottom: 4px;">
+                <li><strong>Black</strong> – for boldness</li>
+                <li><strong>White</strong> – for elegance</li>
+                </ul>
+                <em>Pick what suits your style.</em>
+            `;
+        } else {
+          botMsg.textContent = "Sorry, I’m still learning. Try another question!";
+        }
+
+        chatBody.appendChild(botMsg);
+        chatBody.scrollTop = chatBody.scrollHeight;
+      }, 1000);
+    });
+
+    chatInput.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        sendBtn.click();
+      }
     });
   </script>
 </body>

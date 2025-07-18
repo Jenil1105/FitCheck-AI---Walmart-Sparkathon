@@ -2,7 +2,7 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Josefin Sans', Arial, sans-serif;
+  font-family: 'Montserrat', Arial, sans-serif;
   background: #232323;
 }
 
@@ -125,7 +125,7 @@ body {
   flex-wrap: wrap;
   z-index: 2;
   padding-bottom: 60px;
-  margin-top: -200px;
+  margin-top: -220px;
   transform: translateY(-40px);
   
 }
@@ -138,25 +138,35 @@ body {
   margin: 0px;
   padding-top: 30px;
   position: sticky;
-  top: 200px; /* Adjust as needed */
+  top: 180px; /* Adjust as needed */
   align-self: flex-start;
 }
 
 
 .small-text {
-  font-size: 1.5rem;
+  font-size: 1rem;
   letter-spacing: 2px;
   margin-left: 5px;
-  font-family: 'Josefin Sans', Arial, sans-serif;
+  font-family: 'Montserrat', Arial, sans-serif;
 }
 
 .main-title {
   font-size: 5.5rem;
   font-weight: 700;
-  margin: 0.2em 0;
-  font-family: 'Josefin Sans', Arial, sans-serif;
+  margin: 0em 0;
+  font-family: 'Segoe Print', Arial, sans-serif;
+  letter-spacing: 20px;
+  max-height: 130px ;
+  align-items: top;
 }
-
+.slogan {
+  font-size: 1rem;       /* smaller than main title */
+  color: #fff;        /* a softer gray for subtlety */
+  margin-top: 0.25rem;   /* small space above slogan */
+  font-weight: 400;      /* normal weight */
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: 1px;
+}
 /* RIGHT SIDE INPUT SECTION */
 .fitcheck-intro {
   max-width: 50%;
